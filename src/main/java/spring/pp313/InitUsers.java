@@ -34,9 +34,9 @@ public class InitUsers implements CommandLineRunner {
         userRoles.add(roleUser);
 
         User userAdmin = new User("Vadim", "Petrenko", 27, "vadim@gmail.com",
-                "$2a$12$pSKVszenGxZNKhulnhXX4u1DEo.o3EZ6gUJ5IM5iUmX3sQ9c2IzU6", adminRoles);
+                "$2a$12$pSKVszenGxZNKhulnhXX4u1DEo.o3EZ6gUJ5IM5iUmX3sQ9c2IzU6", adminRoles);//Password 100
         User userUser = new User("Mark", "Frolov", 24, "mark@gmail.com",
-                "$2a$12$1eZnwb.FO0tnfBewGIcQ8OuqnDt8io5wlr1/GfgrjC4GQ5iwCWYty", userRoles);
+                "$2a$12$1eZnwb.FO0tnfBewGIcQ8OuqnDt8io5wlr1/GfgrjC4GQ5iwCWYty", userRoles);//Password 200
         userRepository.save(userAdmin);
         userRepository.save(userUser);
 

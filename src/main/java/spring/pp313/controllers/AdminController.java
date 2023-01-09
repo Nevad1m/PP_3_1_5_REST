@@ -1,61 +1,43 @@
 package spring.pp313.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import spring.pp313.models.Role;
 import spring.pp313.models.User;
-import spring.pp313.services.RoleServiceImpl;
-import spring.pp313.services.UserServiceImpl;
+import spring.pp313.services.RoleService;
+import spring.pp313.services.UserService;
 
-import java.util.List;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
-    private final RoleServiceImpl roleService;
+    private final RoleService roleService;
 
     @Autowired
-    public AdminController(UserServiceImpl userService, RoleServiceImpl roleService) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
 
     @GetMapping
-    public String showAllUsers(Model model) {
+    public String showAllUsers(Principal principal, Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("users", userService.getAllUsers());
-        model.addAttribute("titleTable", "Список всех пользователей:");
+        model.addAttribute("admin", userService.findUserByUsername(principal.getName()));
+        model.addAttribute("newUser", new User());
+        model.addAttribute("rolesAdd", roleService.getAllRoles());
         return "admin";
-    }
-
-    @GetMapping("/{id}")
-    public String showUser(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.getUser(id));
-        return "user";
-    }
-
-    @GetMapping("/addUser")
-    public String addNewUser(Model model, @ModelAttribute("user") User user) {
-        List<Role> roles = roleService.getAllRoles();
-        model.addAttribute("rolesAdd", roles);
-        return "newUser";
     }
 
     @PostMapping
     public String addCreateNewUser(@ModelAttribute("user") User user) {
         userService.createNewUser(user);
         return "redirect:/admin";
-    }
-
-    @GetMapping("/{id}/editUser")
-    public String edit(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.getUser(id));
-        List<Role> roles = roleService.getAllRoles();
-        model.addAttribute("rolesAdd", roles);
-        return "edit";
     }
 
     @PatchMapping("/{id}")

@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id")
-//    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -93,6 +93,10 @@ public class User implements UserDetails {
 
     public Set<Role> getRole() {
         return roles;
+    }
+
+    public String cutRole() {
+        return roles.toString().substring(1, roles.toString().length() - 1).replaceAll("ROLE_", "");
     }
 
     public void setRole(Set<Role> roles) {

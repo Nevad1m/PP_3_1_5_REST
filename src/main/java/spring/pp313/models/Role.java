@@ -54,6 +54,10 @@ public class Role implements GrantedAuthority {
         return name;
     }
 
+    public String cutName() {
+        return name.substring(5);
+    }
+
     public void setName(String name) {
         this.name = name;
     }
