@@ -40,11 +40,11 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PatchMapping("/{id}")
-    public String updateUser(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
-        return "redirect:/admin";
-    }
+//    @PatchMapping("/{id}")
+//    public String updateUser(@ModelAttribute("user") User user) {
+//        userService.updateUser(user);
+//        return "redirect:/admin";
+//    }
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") Long id) {

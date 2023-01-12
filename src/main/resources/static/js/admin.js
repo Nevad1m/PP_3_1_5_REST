@@ -98,7 +98,6 @@ function deleteModal(id) {
             document.getElementById('deleteUserSurname').value = user.surname;
             document.getElementById('deleteUserAge').value = user.age;
             document.getElementById('deleteUsername').value = user.username;
-            document.getElementById('deleteUserRoles').value = user.role.map(role => role.name);
         })
     });
 }
@@ -134,7 +133,6 @@ function editModal(id) {
             document.getElementById('editUserAge').value = user.age;
             document.getElementById('editUsername').value = user.username;
             document.getElementById('editUserPassword').value = user.password;
-            document.getElementById('editUserRolesUserRoles').value = user.role.map(role => role.name);
 
         })
     });
@@ -156,7 +154,7 @@ async function editUser() {
         age: ageValue,
         username: emailValue,
         password: passwordValue,
-        roles: roles
+        role: roles
 
     }
 
@@ -169,7 +167,7 @@ async function editUser() {
         body: JSON.stringify(user)
     });
     getAllUsers()
-    document.getElementById("editFormCloseButton").click(); //???
+    document.getElementById("editFormCloseButton").click();
 }
 
 //User

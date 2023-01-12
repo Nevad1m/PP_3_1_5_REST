@@ -157,26 +157,24 @@
                                                                            id="editUserPassword">
                                                                 </label>
                                                             </p>
-                                                            <label class="container-fluid col-6"
-                                                                   for="editUserRoles">
+                                                            <label class="font-weight-bold">
                                                                 <strong>Role</strong>
-                                                                <select id="editUserRoles" class="form-select"
-                                                                        name="role"
-                                                                        multiple size="2">
-                                                                    <!--<option th:each="role: ${rolesAdd}"-->
-                                                                    <!--th:value="${role.getId()}">-->
-                                                                    <!--<th:block th:text="${role.cutName()}">-->
-                                                                    <!--</th:block>-->
-                                                                    <!--</option>-->
-                                                                </select>
                                                             </label>
+                                                            <div class="container-fluid col-6">
+                                                                <select select class="form-select" name="roles" id="editUserRoles"
+                                                                        multiple required size="2">
+                                                                    <option value="ADMIN">ADMIN</option>
+                                                                    <option value="USER">USER</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" id="editFormCloseButton"
                                                                     class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Close
                                                             </button>
-                                                            <button type="submit" class="btn btn-primary">Edit
+                                                            <button type="submit" class="btn btn-primary" onclick="editUser()">
+                                                                Edit
                                                             </button>
                                                         </div>
                                                     </div>
@@ -239,14 +237,16 @@
                                                                            id="deleteUsername" disabled>
                                                                 </label>
                                                             </p>
-                                                            <label class="container-fluid col-6"
-                                                                   for="deleteUserRoles">
+                                                            <label class="font-weight-bold">
                                                                 <strong>Role</strong>
-                                                                <select id="deleteUserRoles" class="form-select"
-                                                                        name="role"
-                                                                        multiple size="2" disabled>
-                                                                </select>
                                                             </label>
+                                                            <div class="container-fluid col-6">
+                                                                <select class="form-select" name="roles" id="deleteUserRoles"
+                                                                        multiple required size="2" disabled>
+                                                                    <option value="ADMIN" id="delete-admin">ADMIN</option>
+                                                                    <option value="USER" id="delete-user">USER</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" id="deleteFormCloseButton"
@@ -254,8 +254,8 @@
                                                                     data-bs-dismiss="modal">
                                                                 Close
                                                             </button>
-                                                            <button type="submit" class="btn btn-danger">
-                                                                Del
+                                                            <button type="button" class="btn btn-danger" onclick="deleteUser()">
+                                                                Delete
                                                             </button>
                                                         </div>
                                                     </div>
@@ -314,8 +314,8 @@
                                         </p>
                                         <div class="form-group">
                                             <label class="font-weight-bold">Role</label>
-                                            <div>
-                                                <select class="form-control" name="roles" multiple
+                                            <div class="container-fluid col-12">
+                                                <select class="form-select" name="roles" multiple required size="2"
                                                         id="addRoles">
                                                     <option value="ADMIN">ADMIN</option>
                                                     <option value="USER">USER</option>

@@ -3,10 +3,12 @@ package spring.pp313.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import spring.pp313.models.User;
 import spring.pp313.services.UserService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -43,9 +45,9 @@ public class RESTController {
     }
 
     @DeleteMapping("/admin/{id}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/admin/authentication")
