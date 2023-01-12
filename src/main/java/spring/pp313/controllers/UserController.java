@@ -14,17 +14,17 @@ import java.security.Principal;
 @RequestMapping("/")
 public class UserController {
 
-    private final UserService userService;
-
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+//    private final UserService userService;
+//
+//    @Autowired
+//    public UserController(UserService userService) {
+//        this.userService = userService;
+//    }
 
     @GetMapping("/user")
     public String showUser(Model model, Principal principal) {
-        User user = userService.findUserByUsername(principal.getName());
-        model.addAttribute("user", userService.getUser(user.getId()));
+//        User user = userService.findUserByUsername(principal.getName());
+//        model.addAttribute("user", userService.getUser(user.getId()));
         return "user";
     }
 
